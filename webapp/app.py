@@ -14,7 +14,12 @@ from torch.utils.data import DataLoader, Subset, random_split
 from PIL import Image
 import os
 
-torch.manual_seed(123)
+st.set_page_config(
+    page_title="Channa Classification",
+    page_icon="../webapp/logo/favicon.ico",
+)
+
+torch.manual_seed(128)
 
 # Define the class names
 class_names = ['andrao', 'asiatica', 'auranti', 'barca', 'maru', 'stewartii']
@@ -23,12 +28,12 @@ class_names = ['andrao', 'asiatica', 'auranti', 'barca', 'maru', 'stewartii']
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    # transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
 # Load the model
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-state_dict = torch.load('D:/SC4AI/webapp/resnet_model.pt', map_location=device)
+state_dict = torch.load('D:/My File/KULIAH/SEMESTER 8/DOKUMEN MSIB 4/Startup Campus/Synchronize Team/Code/channa_classification/webapp/resnet_modelv3.pt', map_location=device)
 model = ResNet()
 model.load_state_dict(state_dict)
 model = model.to(device)
@@ -43,7 +48,7 @@ def predict(image):
 
 # Create the Streamlit app
 def main():
-    st.title("Image Classifier")
+    st.title("Channa Classifier")
     uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
     if uploaded_image is not None:
@@ -52,7 +57,7 @@ def main():
 
         if st.button("Predict"):
             prediction = predict(image)
-            st.write("Prediction:", prediction)
+            st.write("The Picture is:", prediction)
 
 if __name__ == "__main__":
     main()

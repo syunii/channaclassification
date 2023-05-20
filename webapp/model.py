@@ -13,7 +13,7 @@ from torch.utils.data import DataLoader, Subset, random_split
 from PIL import Image
 import os
 
-torch.manual_seed(123)
+torch.manual_seed(128)
 
 class ResNet(nn.Module):
     def __init__(self, num_classes=10):
