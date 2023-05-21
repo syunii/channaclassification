@@ -1,19 +1,13 @@
-import numpy as np
 import torch
-import torch.nn.functional as F
-import torchvision
-import matplotlib.pyplot as plt
-import torch.nn as nn
-import torch.optim as optim
-import io
 import streamlit as st
 import model
+import uuid
+import numpy as np
 
 from model import ResNet
 from torchvision import transforms
-from torch.utils.data import DataLoader, Subset, random_split
-from PIL import Image
-import os
+from PIL import Image, ImageGrab
+
 
 st.set_page_config(
     page_title="Channa Classification",
@@ -23,7 +17,7 @@ st.set_page_config(
 torch.manual_seed(128)
 
 # Define the class names
-class_names = ['andrao', 'asiatica', 'auranti', 'barca', 'maru', 'stewartii']
+class_names = ['Andrao', 'Asiatica', 'Auranti', 'Barca', 'Maru', 'Stewartii']
 
 # Define the transformation
 transform = transforms.Compose([
@@ -47,18 +41,56 @@ def predict(image):
     predicted_label = class_names[predicted_idx.item()]
     return predicted_label
 
+# Fungsi untuk menyimpan gambar
+def save_image(image, filename):
+    image.save(filename)
+    st.success(f"Gambar berhasil disimpan dengan nama: {filename}")
+
+
 # Create the Streamlit app
 def main():
     st.title("Channa Classifier")
     uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
-
+    
+    col1, col2 = st.columns([10,2] )
+    with col1:
+        predict_button = st.button("Predict")
+    with col2:    
+        capture_button = st.button("Capture")
+        
     if uploaded_image is not None:
         image = Image.open(uploaded_image)
         st.image(image, caption="Uploaded Image", use_column_width=True)
+    
+        
+    if predict_button and uploaded_image is not None:
+        # Lakukan prediksi gambar
+        predicted_label = predict(image)
+        st.info(f"Hasil prediksi: {predicted_label}")
+        
+    
+    if capture_button:
+        # Capture Screenshot
+        screenshot = ImageGrab.grab()
+        image = screenshot
 
-        if st.button("Predict"):
-            prediction = predict(image)
-            st.write("The Picture is:", prediction)
+        # Konversi gambar menjadi array NumPy
+        img_array = np.array(image)
 
+        # Tampilkan gambar hasil capture
+        st.image(img_array, caption='Captured Image', use_column_width=True)
+
+        # Membuat nama unik untuk gambar
+        unique_filename = f"hasil/{uuid.uuid4().hex[:10]}.jpg"
+
+        # Simpan gambar dengan nama otomatis
+        save_image(image, unique_filename)
+        st.success('Gambar berhasil disimpan dengan nama otomatis!')
+
+
+    
+        
+
+# Menjalankan aplikasi utama
 if __name__ == "__main__":
     main()
