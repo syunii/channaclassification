@@ -3,6 +3,4 @@ streamlit
 numpy>=1.20.0
 torchvision
 matplotlib
-io
 model
-os
