@@ -17,7 +17,7 @@ import os
 
 st.set_page_config(
     page_title="Channa Classification",
-    page_icon="https://www.mediafire.com/file/1osnnszkwrjao0q/favicon.ico",
+    page_icon="logo/favicon.ico",
 )
 
 torch.manual_seed(128)
@@ -34,7 +34,7 @@ transform = transforms.Compose([
 
 # Load the model
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-state_dict = torch.load('https://www.mediafire.com/file/a4uu0pbr7lujboe/resnet_modelv3.pt', map_location=device)
+state_dict = torch.load('resnet_modelv3.pt', map_location=device)
 model = ResNet()
 model.load_state_dict(state_dict)
 model = model.to(device)
