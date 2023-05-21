@@ -52,7 +52,7 @@ def main():
     st.title("Channa Classifier")
     uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
     
-    col1, col2 = st.columns([10,2] )
+    col1, col2 = st.columns([20,3] )
     with col1:
         predict_button = st.button("Predict")
     with col2:    
