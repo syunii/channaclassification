@@ -15,7 +15,10 @@ from torch.utils.data import DataLoader, Subset, random_split
 from PIL import Image
 import os
 
-
+st.set_page_config(
+    page_title="Channa Classification",
+    page_icon="https://www.mediafire.com/file/1osnnszkwrjao0q/favicon.ico",
+)
 
 torch.manual_seed(128)
 
