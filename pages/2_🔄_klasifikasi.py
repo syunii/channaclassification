@@ -3,6 +3,7 @@ import streamlit as st
 import model
 import uuid
 import numpy as np
+import PIL
 
 from model import ResNet
 from torchvision import transforms
