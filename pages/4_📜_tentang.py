@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Channa Classification",
-    page_icon="https://www.mediafire.com/file/1osnnszkwrjao0q/favicon.ico",
+    page_icon="logo/favicon.ico",
 )
 
 def main():
