@@ -31,7 +31,7 @@ transform = transforms.Compose([
 
 # Load the model
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-state_dict = torch.load('../web/resnet_modelv3.pt', map_location=device)
+state_dict = torch.load('https://www.mediafire.com/file/a4uu0pbr7lujboe/resnet_modelv3.pt', map_location=device)
 model = ResNet()
 model.load_state_dict(state_dict)
 model = model.to(device)
