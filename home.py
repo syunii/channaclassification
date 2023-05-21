@@ -3,12 +3,12 @@ from PIL import Image
 
 st.set_page_config(
     page_title="Channa Classification",
-    page_icon="../web/logo/favicon.ico",
+    page_icon="https://www.mediafire.com/file/1osnnszkwrjao0q/favicon.ico",
 )
 # Title and introduction
 st.title("Channa Fish Classification Dashboard")
 st.write("Welcome to the Channa Fish Classification Dashboard!")
-st.image("../web/logo/android-chrome-512x512.png")
+st.image("https://www.mediafire.com/view/b9zdx2c8zsa594r/android-chrome-512x512.png")
 
 # Home page content
 st.header("Home Page")
