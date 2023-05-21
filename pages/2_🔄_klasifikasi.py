@@ -41,24 +41,24 @@ def predict(image):
     predicted_label = class_names[predicted_idx.item()]
     return predicted_label
 
-# Fungsi untuk menyimpan gambar dan hasil prediksi
+# Function to save the image and prediction results
 def save_result(image, predicted_label):
     unique_filename = f"hasil/{uuid.uuid4().hex[:10]}"
     save_image(image, f"{unique_filename}.jpg")
     save_prediction(predicted_label, f"{unique_filename}.txt")
 
-# Fungsi untuk menyimpan gambar
+# Function to save the image
 def save_image(image, filename):
     image.save(filename)
     st.success(f"Gambar berhasil disimpan dengan nama: {filename}")
 
-# Fungsi untuk menyimpan hasil prediksi ke file
+# Function to save the prediction result to a file
 def save_prediction(predicted_label, filename):
     with open(filename, "w") as f:
         f.write(predicted_label)
     st.success(f"Hasil prediksi berhasil disimpan dalam file: {filename}")
 
-# Fungsi untuk menampilkan gambar dan hasil prediksi
+# Function to display the image and prediction
 def show_image_and_prediction(image, predicted_label):
     st.image(image, caption="Uploaded Image", use_column_width=True)
     st.info(f"Hasil prediksi: {predicted_label}")
@@ -73,17 +73,17 @@ def main():
         show_image_and_prediction(image, "")
 
         if st.button("Predict"):
-            # Lakukan prediksi gambar
+            # Perform image prediction
             predicted_label = predict(image)
             show_image_and_prediction(image, predicted_label)
 
-            # Simpan gambar dan hasil prediksi
+            # Save the image and prediction results
             save_result(image, predicted_label)
 
-# Membuat folder "hasil" jika belum ada
+# Create the "hasil" folder if it doesn't exist
 if not os.path.exists("hasil"):
     os.makedirs("hasil")
 
-# Menjalankan aplikasi utama
+# Run the main application
 if __name__ == "__main__":
     main()
