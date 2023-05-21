@@ -1,7 +1,0 @@
-dependencies:
-  - pip==23.1.2
-  - python==3.9
-  - numpy
-  - pandas
-  - torch==1.9.0
-  - streamlit==1.22.0
