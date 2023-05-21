@@ -2,12 +2,11 @@ import torch
 import streamlit as st
 import model
 import uuid
-import numpy as np
-import PIL
+import os
 
 from model import ResNet
 from torchvision import transforms
-from PIL import Image, ImageGrab
+from PIL import Image
 
 
 st.set_page_config(
@@ -42,55 +41,48 @@ def predict(image):
     predicted_label = class_names[predicted_idx.item()]
     return predicted_label
 
+# Fungsi untuk menyimpan gambar dan hasil prediksi
+def save_result(image, predicted_label):
+    unique_filename = f"hasil/{uuid.uuid4().hex[:10]}"
+    save_image(image, f"{unique_filename}.jpg")
+    save_prediction(predicted_label, f"{unique_filename}.txt")
+
 # Fungsi untuk menyimpan gambar
 def save_image(image, filename):
     image.save(filename)
     st.success(f"Gambar berhasil disimpan dengan nama: {filename}")
 
+# Fungsi untuk menyimpan hasil prediksi ke file
+def save_prediction(predicted_label, filename):
+    with open(filename, "w") as f:
+        f.write(predicted_label)
+    st.success(f"Hasil prediksi berhasil disimpan dalam file: {filename}")
+
+# Fungsi untuk menampilkan gambar dan hasil prediksi
+def show_image_and_prediction(image, predicted_label):
+    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.info(f"Hasil prediksi: {predicted_label}")
 
 # Create the Streamlit app
 def main():
     st.title("Channa Classifier")
     uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
-    
-    col1, col2 = st.columns([20,3] )
-    with col1:
-        predict_button = st.button("Predict")
-    with col2:    
-        capture_button = st.button("Capture")
-        
+
     if uploaded_image is not None:
         image = Image.open(uploaded_image)
-        st.image(image, caption="Uploaded Image", use_column_width=True)
-    
-        
-    if predict_button and uploaded_image is not None:
-        # Lakukan prediksi gambar
-        predicted_label = predict(image)
-        st.info(f"Hasil prediksi: {predicted_label}")
-        
-    
-    if capture_button:
-        # Capture Screenshot
-        screenshot = ImageGrab.grab()
-        image = screenshot
+        show_image_and_prediction(image, "")
 
-        # Konversi gambar menjadi array NumPy
-        img_array = np.array(image)
+        if st.button("Predict"):
+            # Lakukan prediksi gambar
+            predicted_label = predict(image)
+            show_image_and_prediction(image, predicted_label)
 
-        # Tampilkan gambar hasil capture
-        st.image(img_array, caption='Captured Image', use_column_width=True)
+            # Simpan gambar dan hasil prediksi
+            save_result(image, predicted_label)
 
-        # Membuat nama unik untuk gambar
-        unique_filename = f"hasil/{uuid.uuid4().hex[:10]}.jpg"
-
-        # Simpan gambar dengan nama otomatis
-        save_image(image, unique_filename)
-        st.success('Gambar berhasil disimpan dengan nama otomatis!')
-
-
-    
-        
+# Membuat folder "hasil" jika belum ada
+if not os.path.exists("hasil"):
+    os.makedirs("hasil")
 
 # Menjalankan aplikasi utama
 if __name__ == "__main__":
