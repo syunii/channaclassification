@@ -27,7 +27,7 @@ with col2:
 st.markdown(
     """
     <h1 style='text-align: center;'>Channa Fish Classification Dashboard</h1>
-    <p style='text-align: center;'>Welcome to the Channa Fish Classification Dashboard!</p>
+    <p style='text-align: center;'>Welcome to the Fish Classification Dashboard!</p>
     <style>
     """,
     unsafe_allow_html=True

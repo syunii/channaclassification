@@ -44,21 +44,22 @@ def main():
             # Crop the image to have the target dimensions
             image = crop_image(image, target_width, target_height)
             
-            # Display the image and prediction
-            col1, col2 = st.columns([10, 1])
-            
-            with col1:
-                st.image(image, caption=image_file, use_column_width=False)
-                st.info(f"Hasil prediksi: {predicted_label}")
-            
-            with col2:
-                if st.button(f"❌", key=f"remove_{image_file}"):
-                    os.remove(image_path)
-                    # Update the image file list after deletion
-                    image_files.remove(image_file)
-                    # Remove the prediction file if exists
-                    if os.path.exists(prediction_path):
-                        os.remove(prediction_path)
+            with st.container():
+                # Display the image and prediction
+                col1, col2 = st.columns([10, 1])
+                
+                with col1:
+                    st.image(image, caption=image_file, use_column_width=False)
+                    st.info(f"Hasil prediksi: {predicted_label} \t\n")
+                    
+                with col2:
+                    if st.button(f"❌", key=f"remove_{image_file}"):
+                        os.remove(image_path)
+                        # Update the image file list after deletion
+                        image_files.remove(image_file)
+                        # Remove the prediction file if exists
+                        if os.path.exists(prediction_path):
+                            os.remove(prediction_path)
 
 def crop_image(image, target_width, target_height):
     width, height = image.size

@@ -15,7 +15,6 @@ st.set_page_config(
 )
 
 torch.manual_seed(128)
-
 # Define the class names
 class_names = ['Andrao', 'Asiatica', 'Auranti', 'Barca', 'Maru', 'Stewartii']
 
@@ -28,7 +27,7 @@ transform = transforms.Compose([
 
 # Load the model
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-state_dict = torch.load('resnet_modelv3.pt', map_location=device)
+state_dict = torch.load('resnet_modelv4.pt', map_location=device)
 model = ResNet()
 model.load_state_dict(state_dict)
 model = model.to(device)
@@ -41,7 +40,7 @@ def predict(image):
     predicted_label = class_names[predicted_idx.item()]
     return predicted_label
 
-# Function to save the image and prediction results
+# Function to save the image, prediction results, and accuracy
 def save_result(image, predicted_label):
     unique_filename = f"hasil/{uuid.uuid4().hex[:10]}"
     save_image(image, f"{unique_filename}.jpg")
@@ -50,17 +49,15 @@ def save_result(image, predicted_label):
 # Function to save the image
 def save_image(image, filename):
     image.save(filename)
-    st.success(f"Gambar berhasil disimpan dengan nama: {filename}")
 
 # Function to save the prediction result to a file
 def save_prediction(predicted_label, filename):
     with open(filename, "w") as f:
-        f.write(predicted_label)
-    st.success(f"Hasil prediksi berhasil disimpan dalam file: {filename}")
+        f.write(f"\n{predicted_label}")
 
 # Function to display the image and prediction
-def show_image_and_prediction(image, predicted_label):
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+def show_prediction(predicted_label, image):
+    st.image(image, caption="Uploaded Image", use_column_width=False)
     st.info(f"Hasil prediksi: {predicted_label}")
 
 # Create the Streamlit app
@@ -70,15 +67,22 @@ def main():
 
     if uploaded_image is not None:
         image = Image.open(uploaded_image)
-        show_image_and_prediction(image, "")
-
+        st.image(image, caption="Uploaded Image", use_column_width=True)  # Tambahkan kode untuk menampilkan gambar yang diunggah
         if st.button("Predict"):
             # Perform image prediction
             predicted_label = predict(image)
-            show_image_and_prediction(image, predicted_label)
-
-            # Save the image and prediction results
+            show_prediction(predicted_label, image)
+            st.success(f"Hasil Prediksi Berhasil")
             save_result(image, predicted_label)
+            if predicted_label == "Stewartii":
+                st.markdown(
+                    """
+                    <p style='text-align: center; color: #FF0000;'>Rekomendasi Toko</p>
+                    """
+                    , unsafe_allow_html=True
+                )
+                if st.button("Kunjungi Tokopedia"):
+                    st.markdown("[Klik di sini](https://www.tokopedia.com/zengaquaticbandung/ikan-channa-auranti-chana-auranti-grade-a-size-25-30-cm-spek-kontes?extParam=ivf%3Dtrue&src=topads) untuk mengunjungi Tokopedia.")
 
 # Create the "hasil" folder if it doesn't exist
 if not os.path.exists("hasil"):
