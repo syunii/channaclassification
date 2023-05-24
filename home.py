@@ -14,47 +14,62 @@ st.set_page_config(
     page_icon="logo/favicon.ico",
 )
 
-col1, col2 = st.columns([10,3])
-with col1:
-    # Menampilkan tanggal
-    current_date = date.today().strftime("%B %d, %Y")
-    st.write("Today's date is:", current_date)
-with col2:
-    # Menampilkan total kunjungan
-    st.write("Total Kunjungan:", st.session_state.total_visits)
-    
-# Title and introduction
-st.markdown(
-    """
-    <h1 style='text-align: center;'>Channa Fish Classification Dashboard</h1>
-    <p style='text-align: center;'>Welcome to the Fish Classification Dashboard!</p>
-    <style>
-    """,
-    unsafe_allow_html=True
-)
-col1, col2, col3 = st.columns([10,10,10])
+with st.container():
+    col1, col2 = st.columns([10,3])
+    with col1:
+        # Menampilkan tanggal
+        current_date = date.today().strftime("%B %d, %Y")
+        st.write("Today's date is:", current_date)
+    with col2:
+        # Menampilkan total kunjungan
+        st.write("Total Kunjungan:", st.session_state.total_visits)
 
-with col1:
-    st.write(' ')
+with st.container():    
+    # Title and introduction
+    st.markdown(
+        """
+        <h1 style='text-align: center;'>Channa Fish Classification Dashboard</h1>
+        <p style='text-align: center;'>Welcome to the Fish Classification Dashboard!</p>
+        """,
+        unsafe_allow_html=True
+    )
+    col1, col2, col3 = st.columns([10,10,10])
 
-with col2:
-    st.image("logo/android-chrome-512x512.png", caption='Channa Classification Logo', width=250)
+    with col1:
+        st.write(' ')
 
-with col3:
-    st.write(' ')
+    with col2:
+        st.image("logo/android-chrome-512x512.png", caption='Channa Classification Logo', width=250)
 
+    with col3:
+        st.write(' ')
 
+with st.container():
+    tab1, tab2 = st.tabs(["Tentang", "Panduan Pengguna"])
+    with st.container():
+        tab1.subheader("Tentang")
+        # Information about Channa fish
+        tab1.subheader("About Channa Fish")
+        tab1.write("Channa fish, also known as snakehead fish, are freshwater predatory fish found in Asia and Africa. They are known for their aggressive behavior and can survive in various habitats.")
+    with st.container():
+        tab2.header("Cara Menggunakan Web Klasifikasi Gambar")
 
-# Home page content
-st.header("Home Page")
-st.write("This is the Home page of the Channa Fish Classification Dashboard. Here, you can find information about Channa fish and get started with the classification.")
+        tab2.subheader("Langkah 1: Unggah Gambar")
+        tab2.write("1. Klik tombol 'Unggah Gambar' di halaman utama.")
+        tab2.write("2. Pilih file gambar yang ingin Anda klasifikasikan dari perangkat Anda.")
+        tab2.write("3. Tunggu hingga gambar selesai diunggah dan diproses.")
 
-# Information about Channa fish
-st.subheader("About Channa Fish")
-st.write("Channa fish, also known as snakehead fish, are freshwater predatory fish found in Asia and Africa. They are known for their aggressive behavior and can survive in various habitats.")
+        tab2.subheader("Langkah 2: Tampilkan Hasil Klasifikasi")
+        tab2.write("1. Setelah gambar diproses, hasil klasifikasi akan ditampilkan di halaman Hasil.")
+        tab2.write("2. Anda akan melihat label kategori atau kelas yang menggambarkan apa yang ada di gambar.")
+        tab2.write("3. Jika tersedia, probabilitas atau skor klasifikasi untuk setiap kategori juga akan ditampilkan.")
 
-# Getting started with classification
-st.subheader("Getting Started with Classification")
-st.write("To classify an image as a Channa fish or not, navigate to the 'Image Classification' page from the sidebar. Upload an image and let the classification model determine if it's a Channa fish.")
+        tab2.subheader("Langkah 3: Jelajahi Galeri Gambar")
+        tab2.write("1. Kunjungi halaman Galeri Gambar untuk melihat koleksi gambar yang telah diklasifikasikan sebelumnya.")
+        tab2.write("2. Anda dapat menjelajahi gambar-gambar tersebut dan melihat label kategori yang terkait.")
+
+        tab2.subheader("Catatan:")
+        tab2.write("- Pastikan gambar yang Anda unggah memiliki format yang didukung.")
+        tab2.write("- Hasil klasifikasi mungkin tidak 100% akurat. Gunakanlah dengan kebijaksanaan.")
 
 
