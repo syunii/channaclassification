@@ -5,7 +5,8 @@ import os
 
 from torchvision import transforms
 from PIL import Image
-from model import ResNet
+from modeltrained import ResNet
+from rekomendasi import andrao, asiatica, auranti, barca, maru, stewartii
 
 st.set_page_config(
     page_title="Channa Classification",
@@ -57,18 +58,6 @@ def save_prediction(predicted_label, filename):
 def show_prediction(predicted_label):
     st.info(f"Hasil prediksi: {predicted_label}")
 
-def stewartii_recomendation(predicted_label):
-    col1, col2, col3 = st.columns([3,3,3])
-    with col1:
-        st.button("Kunjungi Tokopedia")
-        st.markdown("<a href='https://www.tokopedia.com/zengaquaticbandung/ikan-channa-auranti-chana-auranti-grade-a-size-25-30-cm-spek-kontes?extParam=ivf%3Dtrue&src=topads' target='_blank'>Klik di sini</a> untuk mengunjungi Tokopedia.", unsafe_allow_html=True)
-    with col2: 
-        st.button("Kunjungi Shopee")
-        st.markdown("<a href='https://www.tokopedia.com/zengaquaticbandung/ikan-channa-auranti-chana-auranti-grade-a-size-25-30-cm-spek-kontes?extParam=ivf%3Dtrue&src=topads' target='_blank'>Klik di sini</a> untuk mengunjungi Tokopedia.", unsafe_allow_html=True)
-    with col3:
-        st.button("Kunjungi Lazada")
-        st.markdown("<a href='https://www.tokopedia.com/zengaquaticbandung/ikan-channa-auranti-chana-auranti-grade-a-size-25-30-cm-spek-kontes?extParam=ivf%3Dtrue&src=topads' target='_blank'>Klik di sini</a> untuk mengunjungi Tokopedia.", unsafe_allow_html=True)
-
 # Create the Streamlit app
 def main():
     st.title("Channa Classifier")
@@ -76,7 +65,7 @@ def main():
 
     if uploaded_image is not None:
         resized_image = Image.open(uploaded_image)
-        image = resized_image.resize((250, 100))  # Atur ukuran gambar menggunakan transformasi PIL
+        image = resized_image.resize((256, 256))  # Atur ukuran gambar menggunakan transformasi PIL
         st.image(image, caption="Uploaded Image", use_column_width=True)  # Tampilkan gambar yang diunggah dengan lebar kolom konten
         if st.button("Predict"):
             # Perform image prediction
@@ -84,15 +73,39 @@ def main():
             show_prediction(predicted_label)
             st.success(f"Prediksi Berhasil!")
             save_result(image, predicted_label)
-            if predicted_label == "Stewartii":
+            if predicted_label == "Andrao":
                 st.markdown(
                     """
                     <p style='text-align: center; color: #FF0000;'>Rekomendasi Toko</p>
                     """
                     , unsafe_allow_html=True
                 )
-                stewartii_recomendation(predicted_label)
-                
+                andrao(predicted_label)
+            elif predicted_label == "Asiatica":
+                st.markdown(
+                    """
+                    <p style='text-align: center; color: #FF0000;'>Rekomendasi Toko</p>
+                    """
+                    , unsafe_allow_html=True
+                )
+                asiatica(predicted_label)
+            elif predicted_label == "Auranti":
+                st.markdown(
+                    """
+                    <p style='text-align: center; color: #FF0000;'>Rekomendasi Toko</p>
+                    """
+                    , unsafe_allow_html=True
+                )
+                auranti(predicted_label)
+            elif predicted_label == "Barca":
+                barca(predicted_label)
+            elif predicted_label == "Maru":
+                maru(predicted_label)
+            elif predicted_label == "Stewartii":
+                stewartii(predicted_label)
+            else:
+                st.info(f"Hasil prediksi: Tidak diketahui")
+          
 
 # Create the "hasil" folder if it doesn't exist
 if not os.path.exists("hasil"):

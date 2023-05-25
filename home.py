@@ -2,11 +2,6 @@ import streamlit as st
 from PIL import Image
 from datetime import date
 
-st.set_page_config(
-    page_title="Channa Classification",
-    page_icon="logo/favicon.ico",
-)
-
 with st.container():    
     # Title and introduction
     st.markdown(
