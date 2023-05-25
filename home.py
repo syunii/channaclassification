@@ -2,27 +2,10 @@ import streamlit as st
 from PIL import Image
 from datetime import date
 
-# Inisialisasi total kunjungan
-if 'total_visits' not in st.session_state:
-    st.session_state['total_visits'] = 0
-
-# Menaikkan total kunjungan
-st.session_state.total_visits += 1
-
 st.set_page_config(
     page_title="Channa Classification",
     page_icon="logo/favicon.ico",
 )
-
-with st.container():
-    col1, col2 = st.columns([10,3])
-    with col1:
-        # Menampilkan tanggal
-        current_date = date.today().strftime("%B %d, %Y")
-        st.write("Today's date is:", current_date)
-    with col2:
-        # Menampilkan total kunjungan
-        st.write("Total Kunjungan:", st.session_state.total_visits)
 
 with st.container():    
     # Title and introduction

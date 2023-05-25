@@ -3,10 +3,9 @@ import streamlit as st
 import uuid
 import os
 
-from model import ResNet
 from torchvision import transforms
 from PIL import Image
-
+from model import ResNet
 
 st.set_page_config(
     page_title="Channa Classification",
