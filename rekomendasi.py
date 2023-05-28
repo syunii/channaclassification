@@ -24,7 +24,7 @@ def asiatica(predicted_label):
         st.markdown('<a href="https://tokopedia.link/HWUZldEuaAb" style="color: white; text-decoration: none;">Ikan Channa Asiatica WS GRADE A - 5-7</a>', unsafe_allow_html=True)
     with col3:
         st.image('assets/asiatica_toko_3.png', use_column_width=True)
-        st.markdown('<a href="https://shopee.co.id/-FLASH-SALE-12.12-Chna-asiatica-ws-white-spot-kualitas-terbaik-quality-premium-BISA-COD-i.872833746.17690929719?sp_atk=9b71e8dd-04d8-458e-ad1b-2e2a4fdb5d33&xptdk=9b71e8dd-04d8-458e-ad1b-2e2a4fdb5d33" style="color: white; text-decoration: none;">Chna asiatica ws/white spot kualitas terbaik quality premium BISA COD</a>', unsafe_allow_html=True)
+        st.markdown('<a href="https://shopee.co.id/hasibuafish2/17690929719" style="color: white; text-decoration: none;">Chna asiatica ws/white spot kualitas terbaik quality premium BISA COD</a>', unsafe_allow_html=True)
 
 #auranti        
 def auranti(predicted_label):
