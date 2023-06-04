@@ -62,7 +62,12 @@ with st.container():
 
     with st.container():
         tab3.header(":orange[Tentang Ikan Channa]")
-        tab3.write("Channa fish, also known as snakehead fish, are freshwater predatory fish found in Asia and Africa. They are known for their aggressive behavior and can survive in various habitats.")
+        tab3.write("""
+                Ikan Channa adalah ikan air tawar predator yang berasal dari Asia. Mereka memiliki penampilan menarik dengan tubuh ramping, warna yang beragam, dan ukuran yang bisa mencapai satu meter. 
+                Ikan Channa agresif dan kuat, memakan serangga, krustasea, dan ikan kecil. Mereka populer di kalangan penghobi akuarium, tetapi juga dianggap sebagai spesies invasif di beberapa wilayah. 
+                Oleh karena itu, penting untuk memelihara dan mengatur kepemilikan ikan Channa sesuai dengan peraturan setempat.
+        """
+        )
         
         #channa andrao
         tab3.subheader(":orange[Ikan Channa Andrao]")
