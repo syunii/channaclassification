@@ -12,7 +12,16 @@ def andrao(predicted_label):
     with col3:
         st.image('assets/andrao_toko_3.png', use_column_width=True)
         st.markdown('<a href="https://shp.ee/wdpitkz" style="color: white; text-decoration: none;">CHANA ANDRAO BERKUALITAS</a>', unsafe_allow_html=True)
-
+    col4, col5, col6= st.columns([3, 3, 3])
+    with col4:
+        st.image('assets/asiatica_toko_1.png', use_column_width=True)
+        st.markdown('<a href="https://tokopedia.link/JfvZBKHuaAb" style="color: white; text-decoration: none;">Andrao Full pelet super gondrong ( Bonus Pelet)</a>', unsafe_allow_html=True)
+    with col5:
+        st.image('assets/andrao_toko_2.png', use_column_width=True)
+        st.markdown('<a href="https://shp.ee/fwi46d8" style="color: white; text-decoration: none;">Channa Andrao Gondrong Grade A (bisa COD) garansi hidup</a>', unsafe_allow_html=True)
+    with col6:
+        st.image('assets/andrao_toko_3.png', use_column_width=True)
+        st.markdown('<a href="https://shp.ee/wdpitkz" style="color: white; text-decoration: none;">CHANA ANDRAO BERKUALITAS</a>', unsafe_allow_html=True)
 #asiatica        
 def asiatica(predicted_label):
     col1, col2, col3 = st.columns([3, 3, 3])
