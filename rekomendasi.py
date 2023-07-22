@@ -86,3 +86,29 @@ def maru(predicted_label):
     with col3:
         st.image('assets/maru_toko_3.png', use_column_width=True)
         st.markdown('<a href="https://bit.ly/43zHzGJ" style="color: white; text-decoration: none;">(Cod) yellow sentarum/maru ys (sortiran terbaik)</a>', unsafe_allow_html=True)
+
+#limbata
+def limbata(predicted_label):
+    col1, col2, col3 = st.columns([3, 3, 3])
+    with col1:
+        st.image('assets/maru_toko_1.png', use_column_width=True)
+        st.markdown('<a href="https://bit.ly/3OJSOZ4" style="color: white; text-decoration: none;">Ikan Channa maru yellow sentarum high quality progresan - 8 - 12 cm</a>', unsafe_allow_html=True)
+    with col2:
+        st.image('assets/maru_toko_2.png', use_column_width=True)
+        st.markdown('<a href="https://bit.ly/3OEzzjq" style="color: white; text-decoration: none;">CHANNA MARU YELLOW SENTARUM 23 CM GRADE A BAHAN KONTES</a>', unsafe_allow_html=True)
+    with col3:
+        st.image('assets/maru_toko_3.png', use_column_width=True)
+        st.markdown('<a href="https://bit.ly/43zHzGJ" style="color: white; text-decoration: none;">(Cod) yellow sentarum/maru ys (sortiran terbaik)</a>', unsafe_allow_html=True)
+
+#bukan_channa
+def bukan_channa(predicted_label):
+    col1, col2, col3 = st.columns([3, 3, 3])
+    with col1:
+        st.image('assets/maru_toko_1.png', use_column_width=True)
+        st.markdown('<a href="https://bit.ly/3OJSOZ4" style="color: white; text-decoration: none;">Ikan Channa maru yellow sentarum high quality progresan - 8 - 12 cm</a>', unsafe_allow_html=True)
+    with col2:
+        st.image('assets/maru_toko_2.png', use_column_width=True)
+        st.markdown('<a href="https://bit.ly/3OEzzjq" style="color: white; text-decoration: none;">CHANNA MARU YELLOW SENTARUM 23 CM GRADE A BAHAN KONTES</a>', unsafe_allow_html=True)
+    with col3:
+        st.image('assets/maru_toko_3.png', use_column_width=True)
+        st.markdown('<a href="https://bit.ly/43zHzGJ" style="color: white; text-decoration: none;">(Cod) yellow sentarum/maru ys (sortiran terbaik)</a>', unsafe_allow_html=True)
