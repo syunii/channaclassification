@@ -29,6 +29,7 @@ with st.container():
     with col3:
         st.write(' ')
 
+
 with st.container():
     tab1, tab2 , tab3= st.tabs(["Ikan Channa", "Panduan Pengguna", "Tentang Aplikasi"]) 
 
@@ -40,7 +41,7 @@ with st.container():
         )
     
     with st.container():
-        tab1.subheader(":blue[Berikut adalah 7 jenis ikan channa yang penyebarannya di Indonesia dan hidup di lingkungan air tawar bentopelagis, menurut data fishbase.org :]")
+        tab1.subheader(":blue[Berikut 7 jenis ikan channa yang penyebarannya di Indonesia dan hidup di lingkungan air tawar bentopelagis, menurut data fishbase.org :]")
 
         #channa andrao
         tab1.subheader(":blue[1. Channa Andrao]")

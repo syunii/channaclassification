@@ -1,6 +1,7 @@
 import streamlit as st
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 st.set_page_config(
     page_title="Channa Classification",
@@ -9,38 +10,57 @@ st.set_page_config(
 )
 
 def main():
-    # Data yang akan ditampilkan (contoh data, Anda bisa sesuaikan dengan data sebenarnya)
+    st.title('Data 7 Jenis Ikan Channa yang Hidup di Air Tawar Bentoplagis Indonesia')
+
+    # URL atau path file CSV 
+    url_or_path = 'data\channidae7.csv'  
+
+    # Baca file CSV menjadi DataFrame
+    try:
+        df = pd.read_csv(url_or_path)
+        # Tampilkan data sebagai tabel
+        st.write('Sumber : fishbase.org')
+        st.dataframe(df)
+    except Exception as e:
+        st.error(f"Tidak dapat membaca file CSV. Error: {e}")
+
+if __name__ == '__main__':
+    main()
+
+
+def create_horizontal_bar_chart():
+    # Data contoh (gantilah dengan data Anda sendiri dari sumber data)
     data = {
-        "NamaIlmiah": ["Channa andrao", "Channa asiatica", "Channa aurantimaculata", "Channa barca", "Channa limbata", "Channa marulioides", "Channa stewartii"],
-        "Penemu": ["Britz, 2013", "Linnaeus, 1758", "Musikasinthorn, 2000", "Hamilton, 1822", "Cuvier, 1831", "Bleeker, 1851", "Playfair, 1867"],
-        "Penyebaran": ["India and Indonesia", "Indonesia, China, Taiwan, Viet Nam", "India and Indonesia", "India, Bangladesh and Indonesia", "Afghanistan in the west to Indonesia through South and Central Asia", "India to China, south to Thailand, Cambodia and Indonesia", "India, Indonesia and Nepal"],
-        "MaxLength(cm)": [14.2, 20.0, 36.2, 105, 32.9, 27.0, 29.7],
-        "PenjualanTertinggi": [9200, 4800, 5300, 2900, 1900, 4200, 8000]
+        'NamaIlmiah': ["Channa andrao", "Channa asiatica", "Channa aurantimaculata", "Channa barca", "Channa limbata", "Channa marulioides", "Channa stewartii"],
+        'PenjualanTertinggi': [9200, 4800, 5300, 2900, 1900, 4200, 8000]
     }
 
-    # Membuat DataFrame dari data yang telah disiapkan
+    # Konversi data ke dalam DataFrame
     df = pd.DataFrame(data)
 
-    # Filter data sesuai kondisi dan kolom yang diminta
-    df_min = df[df["PenjualanTertinggi"] > 1500][["NamaIlmiah", "Penemu", "Penyebaran", "MaxLength(cm)", "PenjualanTertinggi"]]
+    # Urutkan DataFrame berdasarkan nilai PenjualanTertinggi secara menurun
+    df.sort_values(by='PenjualanTertinggi', ascending=False, inplace=True)
 
-    # Urutkan berdasarkan nilai tertinggi pada kolom "PenjualanTertinggi"
-    df_sorted = df_min.sort_values(by="PenjualanTertinggi", ascending=False)
+    # Buat bar chart horizontal
+    fig, ax = plt.subplots(figsize=(12, 6))
+    y_pos = np.arange(len(df))
+    ax.barh(y_pos, df['PenjualanTertinggi'], align='center', color='skyblue', alpha=0.7)
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(df['NamaIlmiah'])
+    ax.invert_yaxis()  # Agar produk terurut dari atas ke bawah
+    ax.set_xlabel('Jumlah Penjualan')
+    ax.set_title('Data Penjualan Tertinggi')
 
-    # Menampilkan judul aplikasi
-    st.title('Hasil Filter dan Urutan Data')
+    # Tambahkan data labels di ujung setiap bar
+    for i, value in enumerate(df['PenjualanTertinggi']):
+        ax.text(value, i, str(value), ha='left', va='center', color='black', fontweight='bold')
 
-    # Menampilkan data dalam bentuk tabel
-    st.dataframe(df_sorted)
+    # Tampilkan chart di Streamlit
+    st.pyplot(fig)
 
-    # Menampilkan grafik menggunakan matplotlib
-    plt.figure(figsize=(4, 3))
-    plt.barh(df_sorted["NamaIlmiah"], df_sorted["PenjualanTertinggi"])
-    plt.xticks(rotation=90)
-    plt.xlabel("Nama Ilmiah")
-    plt.ylabel("Penjualan Tertinggi")
-    plt.title("Grafik Penjualan Tertinggi di Shopee")
-    st.pyplot(plt)
+def main():
+    st.title('Data Penjualan Channa Tertinggi di Shopee')
+    create_horizontal_bar_chart()
 
 if __name__ == '__main__':
     main()

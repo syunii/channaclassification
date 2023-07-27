@@ -57,12 +57,12 @@ def save_prediction(predicted_label, filename):
 
 # Function to display the image and prediction
 def show_prediction(predicted_label):
-    st.info(f"Hasil prediksi: {predicted_label}")
+    st.info(f"Hasil Klasifikasi : {predicted_label}")
 
 # Create the Streamlit app
 def main():
-    st.title(":orange[Klasifikasi]")
-    uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+    st.title(":blue[Klasifikasi ikan channa-mu, sekarang!🐟]")
+    uploaded_image = st.file_uploader("Unggah gambar di bawah ini ya 🔽", type=["jpg", "jpeg", "png"])
 
     if uploaded_image is not None:
         resized_image = Image.open(uploaded_image)
@@ -72,31 +72,31 @@ def main():
             # Perform image prediction
             predicted_label = predict(image)
             show_prediction(predicted_label)
-            st.success(f"Prediksi Berhasil!")
+            st.success(f"Klasifikasi Berhasil!")
             save_result(image, predicted_label)
             if predicted_label == "Andrao":
-                st.write("<h2 style='text-align: center; color: orange;'>Rekomendasi toko</h2>", unsafe_allow_html=True)
+                st.write("<h2 style='text-align: center; color: blue;'>Rekomendasi Toko</h2>", unsafe_allow_html=True)
                 andrao(predicted_label)
             elif predicted_label == "Asiatica":
-                st.write("<h2 style='text-align: center; color: orange;'>Rekomendasi toko</h2>", unsafe_allow_html=True)
+                st.write("<h2 style='text-align: center; color: blue;'>Rekomendasi Toko</h2>", unsafe_allow_html=True)
                 asiatica(predicted_label)
             elif predicted_label == "Auranti":
-                st.write("<h2 style='text-align: center; color: orange;'>Rekomendasi toko</h2>", unsafe_allow_html=True)
+                st.write("<h2 style='text-align: center; color: blue;'>Rekomendasi Toko</h2>", unsafe_allow_html=True)
                 auranti(predicted_label)
             elif predicted_label == "Barca":
-                st.write("<h2 style='text-align: center; color: orange;'>Rekomendasi toko</h2>", unsafe_allow_html=True)
+                st.write("<h2 style='text-align: center; color: blue;'>Rekomendasi Toko</h2>", unsafe_allow_html=True)
                 barca(predicted_label)
             elif predicted_label == "Bukan Channa":
-                st.write("<h2 style='text-align: center; color: orange;'>Rekomendasi toko</h2>", unsafe_allow_html=True)
-                barca(predicted_label)
+                st.write("<h2 style='text-align: center; color: blue;'>Maaf, tidak ada rekomendasi toko untuk jenis ikan bukan channa</h2>", unsafe_allow_html=True)
+                bukan_channa(predicted_label)
             elif predicted_label == "Limbata":
-                st.write("<h2 style='text-align: center; color: orange;'>Rekomendasi toko</h2>", unsafe_allow_html=True)
-                barca(predicted_label)
+                st.write("<h2 style='text-align: center; color: blue;'>Rekomendasi Toko</h2>", unsafe_allow_html=True)
+                limbata(predicted_label)
             elif predicted_label == "Maru":
-                st.write("<h2 style='text-align: center; color: orange;'>Rekomendasi toko</h2>", unsafe_allow_html=True)               
+                st.write("<h2 style='text-align: center; color: blue;'>Rekomendasi Toko</h2>", unsafe_allow_html=True)               
                 maru(predicted_label)
             elif predicted_label == "Stewartii":
-                st.write("<h2 style='text-align: center; color: orange;'>Rekomendasi toko</h2>", unsafe_allow_html=True)             
+                st.write("<h2 style='text-align: center; color: blue;'>Rekomendasi Toko</h2>", unsafe_allow_html=True)             
                 stewartii(predicted_label)
             else:
                 st.info(f"Hasil prediksi: Tidak diketahui")

@@ -1,27 +1,17 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(
-    page_title="Channa Classification",
-    page_icon="logo/cc.ico",
-    layout="wide"
-)
+# Contoh data
+data = {
+    'Kategori': ['Kategori A', 'Kategori B', 'Kategori C'],
+    'Penjualan': [100, 200, 150]
+}
 
-def main():
-    st.title('Aplikasi Streamlit - Menampilkan Data dari CSV Tanpa Unggah File')
+df = pd.DataFrame(data)
 
-    # URL atau path file CSV (gantilah dengan URL atau path Anda)
-    url_or_path = 'data\channidae_7.csv'  # Contoh URL
-    # url_or_path = 'path/to/your/data.csv'      # Contoh path lokal
+# Membuat bar chart menggunakan st.bar_chart()
+st.bar_chart(df['Penjualan'])
 
-    # Baca file CSV menjadi DataFrame
-    try:
-        df = pd.read_csv(url_or_path)
-        # Tampilkan data sebagai tabel
-        st.write('Data dari file CSV:')
-        st.dataframe(df)
-    except Exception as e:
-        st.error(f"Tidak dapat membaca file CSV. Error: {e}")
-
-if __name__ == '__main__':
-    main()
+# Menambahkan data label ke dalam bar chart
+for i, penjualan in enumerate(df['Penjualan']):
+    st.text(f"{df['Kategori'][i]}: {penjualan}")
