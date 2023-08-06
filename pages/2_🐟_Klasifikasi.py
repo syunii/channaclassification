@@ -6,7 +6,7 @@ import os
 from torchvision import transforms
 from PIL import Image
 from modeltrained import ResNet18
-from rekomendasi import andrao, asiatica, auranti, barca, bukan_channa, limbata, maru, stewartii
+from rekomendasi import andrao, asiatica, auranti, barca, limbata, maru, stewartii
 
 st.set_page_config(
     page_title="Channa Classification",
@@ -88,7 +88,6 @@ def main():
                 barca(predicted_label)
             elif predicted_label == "Bukan Channa":
                 st.write("<h2 style='text-align: center; color: blue;'>Maaf, tidak ada rekomendasi toko untuk jenis ikan bukan channa</h2>", unsafe_allow_html=True)
-                bukan_channa(predicted_label)
             elif predicted_label == "Limbata":
                 st.write("<h2 style='text-align: center; color: blue;'>Rekomendasi Toko</h2>", unsafe_allow_html=True)
                 limbata(predicted_label)

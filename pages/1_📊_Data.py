@@ -10,10 +10,11 @@ st.set_page_config(
 )
 
 def main():
-    st.title('Data 7 Jenis Ikan Channa yang Hidup di Air Tawar Bentoplagis Indonesia')
+    st.title('Data 7 Jenis Ikan Channa yang Hidup di Air Tawar Bentopelagis Indonesia')
+    st.write('Data Penjualan Per Bulan Agustus 2023')
 
     # URL atau path file CSV 
-    url_or_path = 'data\channidae7.csv'  
+    url_or_path = 'data/channidae7.csv'  
 
     # Baca file CSV menjadi DataFrame
     try:
@@ -32,7 +33,7 @@ def create_horizontal_bar_chart():
     # Data contoh (gantilah dengan data Anda sendiri dari sumber data)
     data = {
         'NamaIlmiah': ["Channa andrao", "Channa asiatica", "Channa aurantimaculata", "Channa barca", "Channa limbata", "Channa marulioides", "Channa stewartii"],
-        'PenjualanTertinggi': [9200, 4800, 5300, 2900, 1900, 4200, 8000]
+        'PenjualanTertinggi': [9200, 4800, 5400, 3000, 2000, 4300, 5200]
     }
 
     # Konversi data ke dalam DataFrame
@@ -60,6 +61,7 @@ def create_horizontal_bar_chart():
 
 def main():
     st.title('Data Penjualan Channa Tertinggi di Shopee')
+    st.write('Per Bulan Agustus 2023')
     create_horizontal_bar_chart()
 
 if __name__ == '__main__':

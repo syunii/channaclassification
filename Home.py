@@ -219,23 +219,22 @@ with st.container():
 
         tab2.subheader(":blue[Mengklasifikasi Gambar Ikan]")
         tab2.write("1. Kunjungi halaman 🐟Klasifikasi pada sidebar")
-        tab2.write("2. Klik tombol 'Unggah Gambar' di halaman Klasifikasi")
+        tab2.write("2. Klik tombol 'Browse files' di halaman Klasifikasi")
         tab2.write("3. Pilih file gambar yang ingin Anda klasifikasikan dari perangkat Anda")
         tab2.write("4. Tunggu hingga gambar selesai diunggah dan diproses, Anda akan melihat hasil klasifikasi dan juga rekomendasi toko beserta jumlah data penjualan di Shopee")
     
         tab2.subheader(":blue[Melihat Riwayat Klasifikasi]")
         tab2.write("1. Kunjungi halaman 🖼Galeri pada sidebar dan akan melihat semua riwayat hasil klasifikasi")
         tab2.write("2. Klik 'Pilih Jenis Channa' untuk melihat riwayat hasil klasifikasi jenis channa tertentu saja")
-        tab2.write("3. Klik icon '🗑' untuk menghapus riwayat hasil klasifikasi")
+        tab2.write("3. Klik tombol 'Hapus' untuk menghapus riwayat hasil klasifikasi")
 
         tab2.subheader(":blue[Menyampaikan Pertanyaan dan Saran]")
         tab2.write("1. Kunjungi halaman 📮Kontak pada sidebar")
-        tab2.write("2. Isi formulir yang tersedia dengan sesuai dan lengkap")
-        tab2.write("3. Klik tombol '📤Kirim Pesan'")
+        tab2.write("2. Hubungi email yang tertera")
 
-        tab2.subheader(":blue[Catatan:]")
-        tab2.write("- Pastikan gambar yang Anda unggah memiliki format yang didukung dan berwarna.")
-        tab2.write("- Hasil klasifikasi mungkin tidak 100% akurat. Gunakanlah dengan kebijaksanaan.")
+        tab2.subheader(":blue[🚨Perhatian :]")
+        tab2.write("✔ Pastikan gambar yang Anda unggah memiliki format yang didukung dan berwarna.")
+        tab2.write("✔ Hasil klasifikasi mungkin tidak 100% akurat. Gunakanlah dengan kebijaksanaan.")
     
     with st.container():
         tab3.header(":blue[Tentang Aplikasi]")
@@ -244,24 +243,3 @@ with st.container():
             Selain dapat mengklasifikasi, aplikasi juga mampu merekomendasikan toko penjual anakan ikan channa di Shopee yang terpercaya. Aplikasi masih dalam tahap pengembangan,
             yang tentunya memerlukan kritik dan saran dari pengguna.
         """)
-
-    #footer aplikasi
-    footer_style = """
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #0E1117;
-    color: #FAFAFA;
-    text-align: center;
-    padding: 10px;
-    """
-
-    st.markdown(
-        """
-        <footer style='{}'>
-            © 2023, Channa Classification
-        </footer>
-        """.format(footer_style),
-        unsafe_allow_html=True
-    )
