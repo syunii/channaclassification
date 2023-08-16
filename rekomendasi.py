@@ -264,7 +264,7 @@ def maru(predicted_label):
         harga_asli_ma6 = 'Rp 35.000'
         harga_diskon_ma6 = 'Rp 13.980'
         st.markdown(f"<div style='text-align: left'><s>{harga_asli_ma6}</s> {harga_diskon_ma6}</div>", unsafe_allow_html=True)
-        st.markdown('⭐⭐⭐⭐ 1,1 Terjual')
+        st.markdown('⭐⭐⭐⭐ 1,1 RB Terjual')
         st.markdown('📍Kab. Trenggalek')
 
 #limbata

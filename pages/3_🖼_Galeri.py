@@ -3,6 +3,7 @@ import os
 from PIL import Image
 import glob
 import datetime
+from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
     page_title="Channa Classification",
@@ -76,7 +77,10 @@ def main():
                     
                 with col4:
                     if st.button(f"Hapus", key=f"remove_{image_file}"):
-                        remove_files(image_file, prediction_file) 
+                        remove_files(image_file, prediction_file)
+                        st.success("Data berhasil dihapus")
+                        # st.experimental_rerun()
+                        st_autorefresh(interval=1000)
 
 def crop_image(image, target_width, target_height):
     width, height = image.size

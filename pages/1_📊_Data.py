@@ -25,10 +25,6 @@ def main():
     except Exception as e:
         st.error(f"Tidak dapat membaca file CSV. Error: {e}")
 
-if __name__ == '__main__':
-    main()
-
-
 def create_horizontal_bar_chart():
     # Data contoh (gantilah dengan data Anda sendiri dari sumber data)
     data = {
@@ -42,10 +38,11 @@ def create_horizontal_bar_chart():
     # Urutkan DataFrame berdasarkan nilai PenjualanTertinggi secara menurun
     df.sort_values(by='PenjualanTertinggi', ascending=False, inplace=True)
 
-    # Buat bar chart horizontal
+    # Buat bar chart horizontal dengan warna berbeda pada setiap batang
     fig, ax = plt.subplots(figsize=(12, 6))
     y_pos = np.arange(len(df))
-    ax.barh(y_pos, df['PenjualanTertinggi'], align='center', color='skyblue', alpha=0.7)
+    colors = plt.cm.viridis(np.linspace(0, 1, len(df)))  # Pilih skema warna (ganti dengan yang lain jika diinginkan)
+    bars = ax.barh(y_pos, df['PenjualanTertinggi'], color=colors, alpha=0.7)
     ax.set_yticks(y_pos)
     ax.set_yticklabels(df['NamaIlmiah'])
     ax.invert_yaxis()  # Agar produk terurut dari atas ke bawah
@@ -53,16 +50,12 @@ def create_horizontal_bar_chart():
     ax.set_title('Data Penjualan Tertinggi')
 
     # Tambahkan data labels di ujung setiap bar
-    for i, value in enumerate(df['PenjualanTertinggi']):
-        ax.text(value, i, str(value), ha='left', va='center', color='black', fontweight='bold')
+    for bar, value in zip(bars, df['PenjualanTertinggi']):
+        ax.text(value, bar.get_y() + bar.get_height()/2, str(value), ha='left', va='center', color='black', fontweight='bold')
 
     # Tampilkan chart di Streamlit
     st.pyplot(fig)
 
-def main():
-    st.title('Data Penjualan Channa Tertinggi di Shopee')
-    st.write('Per Bulan Agustus 2023')
-    create_horizontal_bar_chart()
-
 if __name__ == '__main__':
     main()
+    create_horizontal_bar_chart()
